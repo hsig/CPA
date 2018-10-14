@@ -1,0 +1,53 @@
+  <div class="modal-content" ng-form="myForm" >
+  <div class="modal-header">
+      <h4>{{vm.header}}</h4>
+  </div>
+  <div class="modal-body row">
+      <div class="col-md-12 form-group">
+        <div ng-If="vm.failureMessage" class="alert alert-danger ">
+          <strong>Erreur : </strong> {{vm.failureMessage}}
+        </div><!-- /ALERT -->
+      </div>
+      <div class="col-md-6">
+          <div class="col-md-12 form-group">
+              <input ng-model="vm.voiture.immatriculation" name="imma"  placeholder="Immatriculation : 0000 TN 0000"  type="text" ng-pattern="/^[0-9]{1,4} (TN) [0-9]{1,4}$/"  class="form-control" required/>
+              <span  ng-show="myForm.imma.$error.pattern">Not valid - Ex: 0000 TN 0000</span>
+          </div>
+          <div class="col-md-12 form-group">
+            <select ng-model="vm.voiture.model" placeholder="Model" ng-options="item for item in vm.CarModel" class="form-control" required >
+              <option value="">- Marque voiture -</option>
+            </select>
+          </div>
+          <div class="col-md-12 form-group">
+              <input ng-model="vm.voiture.genre" placeholder="Genre" type="text" class="form-control" required/>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="col-md-12 form-group">
+              <input ng-model="vm.voiture.km" placeholder="Kilométrage" type="number" class="form-control" min=0 required/>
+          </div>
+          <div class="col-md-12 form-group">
+              <select ng-model="vm.voiture.used" placeholder="Disponibilité" ng-options="item.value as item.name for item in vm.disponibility" class="form-control" required>
+                <option value="">- Disponibilité -</option>
+              </select>
+          </div>
+      </div>
+  </div>
+
+  <div class="modal-footer">
+      <div class="col-md-12 form-group" role="group">
+          <button ng-if=(!vm.clicked) ng-disabled="myForm.$invalid"  ng-click="vm.addVoiture(vm.voiture)" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          </button>
+          <button ng-if=(vm.clicked)  ng-disabled="myForm.$invalid"  ng-click="vm.updateVoiture(vm.voiture)" class="btn btn-info">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          </button>
+          <button ng-if=" (vm.clicked) || !myForm.$invalid"  ng-click="vm.cancelEdit()"   class="btn btn-danger">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+          </button>
+          <button  ng-click="vm.cancel()"   class="btn btn-default">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<section class="col-md-12 content-wraper" ng-form="myForm">
+  </br>
+  <div class="col-md-12 form-group">
+    <div class="pull-right">
+      <button ng-click="factureVm.openAjoutFactureModal()" class="btn btn-default">
+        Nouvelle Facture
+      </button>
+    </div></br>
+  </div>
+  <div class="table-responsive col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>N° Facture</th>
+          <th>Etabli par</th>
+          <th>Client</th>
+          <th>Emission/ Date d'écheance</th>
+          <th>Montant</th>
+          <th>Moyens</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="facture in factureVm.facturesArray">
+          <td>{{facture.num_facture}}</td>
+          <td>admin</td>
+          <td>{{facture.clientNom}}</td>
+          <td>{{facture.date_facture}} / {{facture.date_echeance}} ans</td>
+          <td>{{facture.amount}}</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="...">
+              <span ng-click="factureVm.deleteFacture(facture._id)" disabled="true" class="btn glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <span ng-click="factureVm.editFacture(facture._id)" disabled="true" class="btn glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <span ng-click="factureVm.showContent(facture)"  class="btn glyphicon glyphicon-download-alt" aria-hidden="true" title="Download" ></span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

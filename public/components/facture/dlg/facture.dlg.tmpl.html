@@ -1,0 +1,138 @@
+  <div class="modal-content" ng-form="myForm" >
+  <div class="modal-header">
+      <h5>Facture / <small>{{vm.header}}</small></h5>
+  </div>
+  <div class="modal-body row">
+    <div class="col-md-12 jumbotron" >
+      <div class="row">
+          <div class="col-md-4 form-group">
+            <span>Client<sup>*</sup></span>
+            <div class="input-group">
+              <input title="Client" type="text" ng-model="vm.facture.clientNom" class="form-control" placeholder="Client" required />
+              <span class="input-group-btn" >
+                <button type="button" class="btn btn-default ">
+                    <span class="glyphicon glyphicon-plus" ></span>
+                </button>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-3 col-md-offset-2 form-group">
+            <span>Date Facture<sup>*</sup></span>
+            <div class="input-group">
+
+              <input type="text" class="form-control"
+                     uib-datepicker-popup="{{vm.format}}"
+                     placeholder="Date facture ->"
+                     ng-model="vm.facture.date_facture"
+                     is-open="vm.openedA" title="Date facture"
+                     datepicker-options="vm.options"
+                     close-text="Close" ng-required="true" />
+               <span class="input-group-btn date">
+                 <button type="button" class="btn btn-primary" ng-click="vm.openA()"><i class="glyphicon glyphicon-calendar"></i></button>
+               </span>
+
+            </div>
+          </div>
+          <div class="col-md-3 form-group">
+            <span>Date Livraison<sup>*</sup></span>
+            <div class="input-group">
+
+              <input type="text" class="form-control"
+                     uib-datepicker-popup="{{vm.format}}"
+                     placeholder="Date livraison ->"
+                     ng-model="vm.facture.date_livraison"
+                     is-open="vm.openedB" title="Date livraison"
+                     datepicker-options="vm.options"
+                     close-text="Close" ng-required="true" />
+               <span class="input-group-btn date">
+                 <button type="button" class="btn btn-primary" ng-click="vm.openB()"><i class="glyphicon glyphicon-calendar"></i></button>
+               </span>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-2 form-group">
+            <input title="Votre numéro du facture" min="{{vm.largest + 1}}" type="number" ng-model="vm.facture.num_facture"  class="form-control" placeholder="N° facture" required />
+          </div>
+          <div class="col-md-3 col-md-offset-7 form-group">
+            <select ng-model="vm.facture.date_echeance" class="form-control" required >
+              <option value="">- Date écheance -</option>
+              <option value="14">14 ans</option>
+              <option value="20">20 ans</option>
+            </select>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <!-- Articles -->
+      <div ng-repeat="item in vm.article" >
+
+        <div class="col-md-3 form-group">
+            <div class="input-group">
+              <span class="input-group-addon" >
+                    <span class="glyphicon glyphicon-list" ></span>
+              </span>
+              <input type="text" ng-model="vm.article[$index].designation"  class="form-control input-sm" placeholder="Désignation" required />
+            </div>
+        </div>
+        <div class="col-md-2 form-group">
+            <input type="number" ng-model="vm.article[$index].quantite" ng-change="vm.articleSum(item, [$index])" class="form-control input-sm" placeholder="Quantité"  required />
+        </div>
+        <div class="col-md-2 form-group">
+            <input type="number" ng-model="vm.article[$index].prix" ng-change="vm.articleSum(item, [$index])"  currency="€" class="form-control input-sm" placeholder="Prix" required />
+        </div>
+        <div class="col-md-2 form-group">
+            <select ng-model="vm.article[$index].tva" ng-change="vm.articleSum(item, [$index])" class="form-control input-sm" required >
+              <option value="">- TVA % -</option>
+              <option value="18"> 18% </option>
+              <option value="19"> 19% </option>
+              <option value="20"> 20% </option>
+            </select>
+        </div>
+        <div class="col-md-2 form-group" >
+            <output class="form-control input-sm"> Montant : {{vm.article[$index].montant | currency}}</output>
+            <!--<output class="form-control input-sm"> Montant : {{vm.article[$index].prix * vm.article[$index].quantite + ((vm.article[$index].prix * vm.article[$index].quantite * vm.article[$index].tva)/100)}}</output>
+            <input type="number" ng-model="vm.article[$index].montant" value="{{vm.total}}" class="form-control input-sm" placeholder="Montant" required />
+            -->
+        </div>
+        <div class="col-md-1 form-group">
+          <button ng-disabled="vm.count == 1" ng-click="vm.deleteArticle(item)" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-12 form-group">
+          <button ng-click="vm.addArticle()"  type="button" class="btn btn-info btn-sm">
+              <span id="plus" class="glyphicon glyphicon-plus"></span>
+          </button>
+          <small for="plus">Ajouter un article</small>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="col-md-6 form-group">
+        <textarea class="form-control" ng-model="vm.facture.notes" style="resize:none" rows="5" placeholder="Notes"></textarea>
+      </div>
+      <div class="col-md-4 col-md-offset-2 form-group">
+        <div class="well well-lg" >
+            <p>Hors TVA {{totalHt}}</p>
+            <p>Montant {{vm.amount}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+      <div class="col-md-12 form-group" role="group" >
+        <button ng-disabled="myForm.$invalid" ng-click="vm.addFacture(vm.facture)" class="btn btn-success">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <button ng-if=" (vm.clicked) || !myForm.$invalid"  ng-click="vm.cancelEdit()" class="btn btn-danger">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        </button>
+        <button  ng-click="vm.cancel()"   class="btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+  </div>
+</div>

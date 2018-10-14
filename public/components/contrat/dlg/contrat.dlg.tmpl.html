@@ -1,0 +1,94 @@
+  <div class="modal-content" ng-form="myForm" >
+  <div class="modal-header">
+      <h4>{{vm.header}}</h4>
+  </div>
+  <div class="modal-body row">
+    <div class="col-md-12 form-group">
+      <div ng-If="vm.failureMessage" class="alert alert-danger ">
+        <strong>Erreur : </strong> {{vm.failureMessage}}
+      </div><!-- /ALERT -->
+    </div>
+    <!-- Type Contrat -->
+    <div class="col-md-3 form-group">
+      <select ng-model="vm.contrat.type" ng-options="item.value as item.name for item in vm.ModelType" class="form-control" required>
+        <option value="">- Type -</option>
+      </select>
+    </div>
+    <!-- 1er Conducteur -->
+    <div class="col-md-12 form-group">
+      <!--<input auto-complete-contrat ui-items="names" ng-model="contrat.clientId" name="nom" type="text" class="form-control" ng-pattern="/^[a-zA-Z]{1,14}$/" required/>-->
+      <div class="input-group">
+          <select ng-model="vm.contrat.client" ng-options="client as client.nom+' '+client.prenom for client in vm.clientsArray" ng-disabled="vm.clientsArray.length == 0" class="form-control" required>
+            <option value="">- Conducteur à choisir -</option>
+          </select>
+          <span class="input-group-btn" >
+            <button type="button" class="btn btn-primary"  ng-click="vm.changeLocation(1)"><i class="glyphicon glyphicon-plus"></i> Ajouter</button>
+          </span>
+      </div>
+    </div>
+    <!-- 2eme Conducteur -->
+    <div class="col-md-12 form-group">
+      <select ng-model="vm.contrat.clientSup" ng-options="client as client.nom+' '+client.prenom for client in vm.clientsArray" ng-disabled="vm.clientsArray.length == 0" class="form-control" >
+        <option value="">- 2ème Conducteur à choisir -</option>
+      </select>
+    </div>
+    <!-- Voiture -->
+    <div class="col-md-12 form-group">
+      <div class="input-group">
+        <select ng-model="vm.contrat.voiture" ng-options="voiture as voiture.model+' '+voiture.immatriculation for voiture in vm.voituresArray" ng-disabled="vm.voituresArray.length == 0" class="form-control" required>
+          <option value="">- Voiture à choisir -</option>
+        </select>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-primary"  ng-click="vm.changeLocation(2)"><i class="glyphicon glyphicon-plus"></i> Ajouter</button>
+        </span>
+      </div>
+    </div>
+    <!-- Date Début -->
+    <div class="col-md-12 form-group">
+      <div class="input-group">
+        <span class="input-group-btn date">
+          <button type="button" class="btn btn-primary" ng-click="vm.openA()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+        <input type="text" class="form-control"
+               uib-datepicker-popup="{{vm.format}}"
+               placeholder="<- cliquer : Date début"
+               ng-model="vm.contrat.dateDebut"
+               is-open="vm.openedA" title="Date début"
+               datepicker-options="vm.options"
+               close-text="Close" ng-required="true" />
+
+      </div>
+    </div>
+    <!-- Date Fin -->
+    <div class="col-md-12 form-group">
+      <div class="input-group">
+        <span class="input-group-btn date">
+          <button type="button" class="btn btn-primary" ng-click="vm.openB()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+        <input type="text" class="form-control"
+               uib-datepicker-popup="{{vm.format}}"
+               placeholder="<- cliquer : Date Fin"
+               ng-model="vm.contrat.dateFin"
+               is-open="vm.openedB" title="Date Fin"
+               datepicker-options="vm.options"
+               close-text="Close" required />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <div class="col-md-12 form-group" role="group" >
+        <button ng-if=(!vm.clicked) ng-disabled="myForm.$invalid"  ng-click="vm.addContrat(vm.contrat)"  class="btn btn-success">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <button ng-if=(vm.clicked)  ng-disabled="myForm.$invalid || myForm.$pristine"  ng-click="vm.updateContrat(vm.contrat)" class="btn btn-info">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        </button>
+        <button ng-if=" (vm.clicked) || !myForm.$invalid"  ng-click="vm.cancelEdit()"   class="btn btn-danger">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        </button>
+        <button  ng-click="vm.cancel()"   class="btn btn-default">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header ">
+            <div ng-if="isActif">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="#/"><i class="glyphicon glyphicon-home" /> CPA</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div ng-if="isActif" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right" >
+                <li class="dropdown" ng-cloak>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <i class="glyphicon glyphicon-tasks"></i>  <span class="caret"></span> <span class="hidden-md hidden-sm hidden-lg">Menu</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation" >
+                          <a href="#/Reservations"><i class="glyphicon glyphicon-alert" /> Reservations</a>
+                        </li>
+                        <li  role="separator" class="divider"></li>
+                        <li  role="presentation" >
+                          <a  href="#/Contrats"><i class="glyphicon glyphicon-file" /> Contrats</a>
+                        </li>
+                        <li  role="presentation">
+                          <a  href="#/Clients"><i class="glyphicon glyphicon-user" /> Clients</a>
+                        </li>
+                        <li  role="presentation">
+                          <a  href="#/Voitures"><i class="glyphicon glyphicon-road" /> Voitures</a>
+                        </li>
+                        <li  role="presentation" >
+                          <a  href="#/Utilisateur"><i class="glyphicon glyphicon-user" /> Utilisateurs</a>
+                        </li>
+                        <li  role="separator" class="divider"></li>
+                        <li  role="presentation" >
+                          <a  href="#/Factures"><i class="glyphicon glyphicon-usd" /> Facturation</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown" ng-cloak>
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-user"></i> <span class="caret"></span></i> <span class="hidden-md hidden-sm hidden-lg">Infos</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li role="presentation">
+                          <a  ng-cloak><i class="glyphicon glyphicon-user"></i> User Profile : {{memberinfo}}</a>
+                        </li>
+                        <li role="presentation">
+                          <a ><i class="glyphicon glyphicon-cog" disabled="true"></i> Settings</a>
+                        </li>
+                        <!--<li class="divider"></li>-->
+                    </ul>
+                </li>
+                <li role="presentation" ng-cloak>
+                  <a  ng-click="vm.logout()"><i class="glyphicon glyphicon-log-out"></i><span class="hidden-md hidden-sm hidden-lg"> Logout </span></a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

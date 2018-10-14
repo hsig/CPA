@@ -1,0 +1,51 @@
+<div class="col-md-12">
+  <h2>Information générale</h2>
+  <hr>
+</div>
+<div class="table-responsive col-md-12">
+  <table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Password</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-form="myForm">
+        <td>
+          <input ng-model="administrationVm.user.name" name="name"  placeholder="Identifiant"  type="text"   class="form-control" required/>
+          <span  ng-show="myForm.name.$error.pattern">Not valid - Ex: exemple</span>
+        </td>
+        <td><input ng-model="administrationVm.user.password"  type="text"  placeholder="Password" class="form-control" required/></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="...">
+            <button ng-if=(!administrationVm.clicked) ng-disabled="myForm.$invalid"  ng-click="administrationVm.register()" class="btn btn-success">
+              <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            </button>
+            <button ng-if=(administrationVm.clicked)  ng-disabled="myForm.$invalid || myForm.$pristine"  ng-click="administrationVm.updateUser()" class="btn btn-info">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </button>
+            <button ng-if=" (administrationVm.clicked) || !myForm.$invalid"  ng-click="administrationVm.cancelEdit()"   class="btn btn-danger">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr ng-repeat="user in administrationVm.userArray">
+        <td>{{user.name}}</td>
+        <td>{{user.password}}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="...">
+            <button ng-click="administrationVm.deleteUser(user._id)" ng-disabled="true" class="btn btn-danger">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+            <button ng-click="administrationVm.editUser(user._id)" ng-disabled="true"  class="btn btn-warning">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,46 @@
+<div class="col-md-12 form-group">
+  <div class="pull-right">
+    <button ng-click="contratVm.openContratModal()" class="btn btn-default">
+      Nouveau contrat
+    </button>
+  </div></br>
+</div>
+<div class="table-responsive col-md-12" >
+  <table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+      <tr>
+        <th >Type</th>
+        <th >Clients</th>
+        <th >2ème Conducteur</th>
+        <th >Voiture No</th>
+        <th >Date Début</th>
+        <th >Date Fin</th>
+        <th >Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="contrat in contratVm.contratsArray">
+        <td>{{contrat.type}}</td>
+        <td>{{contrat.clientNom}}</td>
+        <td ng-if="contrat.clientNomSup">{{contrat.clientNomSup}}</td>
+        <td ng-if="!contrat.clientNomSup">N/A</td>
+        <td>{{contrat.voitureImm}}</td>
+        <td>{{contrat.dateDebut}}</td>
+        <td>{{contrat.dateFin}}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="...">
+            <button ng-click="contratVm.deleteContrat(contrat)" ng-disabled="(contratVm.clicked)" class="btn btn-danger">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+            <button ng-click="contratVm.editContrat(contrat._id)"   class="btn btn-warning">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+            <button ng-if="contrat.type == 'contrat' " ng-click="contratVm.showContent(contrat)" ng-disabled="(contratVm.clicked)" title="Download" class="btn btn-primary">
+              <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

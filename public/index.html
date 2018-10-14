@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-app="CPAApp" ng-strict-di>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>CPA</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap-3.3.6-dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+
+    <link rel="stylesheet" href="/assets/css/angular-material/angular-material.min.css" >
+    <link rel="stylesheet" href="/assets/css/ngProgress.css" >
+    <link rel="stylesheet" href="/assets/css/style.css" >
+    <!--
+    <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css" >
+    <link rel="stylesheet" href="/assets/css/jquery-ui.css" >
+
+    <link rel="stylesheet" href="/assets/dist/app.min.css" >
+    -->
+  </head>
+  <body ng-controller="main as vm">
+
+      <section id="header" class="col-md-12">
+        <div ng-include src="'components/_templates/header.html'" />
+
+      </section>
+
+      <section class="col-md-12" ng-if="isActif">
+        <div ng-include src="'components/_templates/menu_header.html'" />
+      </section>
+
+        <section id="content" class="col-md-12">
+            <div class="view-container" ng-view /><!-- View content -->
+        </section>
+
+
+      <section id="footer" class="col-md-12" >
+      </section>
+
+    <!--Library
+    <script src="/assets/dist/app.js" ></script>
+    <script src="/assets/js/jquery-ui.min.js"></script>
+    <script src="/assets/js/bootstrap-datepicker.min.js"></script>
+    -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/js/underscore.js" ></script>
+    <script src="/assets/js/angular/angular.js"></script>
+    <script src="/assets/js/angular/angular-route.js"></script>
+    <script src="/assets/js/angular-material/angular-animate.min.js"></script>
+    <script src="/assets/js/angular-material/angular-aria.min.js"></script>
+    <script src="/assets/js/angular-material/angular-messages.min.js"></script>
+    <script src="/assets/js/angular-material/angular-material.min.js"></script>
+    <script src="/assets/js/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="/assets/js/ngProgress.js"></script>
+    <script src="/assets/js/jsPdf/zlib.js"></script>
+    <script src="/assets/js/jsPdf/png.js"></script>
+    <script src="/assets/js/jsPdf/jsPdf.js"></script>
+    <script src="/assets/js/jsPdf/addimage.js"></script>
+    <script src="/assets/js/jsPdf/png_support.js"></script>
+    <script src="/assets/js/pubnub/pubnub.min.js"></script>
+    <script src="/assets/js/pubnub/webrtc.js"></script>
+    <script src="/assets/js/pubnub/rtc-controller.js"></script>
+
+    <script src="/components/app.modules.js" ></script>
+    <script src="/components/main.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Client Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/client/app.client.module.js" ></script>
+    <script src="/components/client/client.controller.js"></script>
+    <script src="/components/client/client.service.js"></script>
+    <script src="/components/client/client.directive.js"></script>
+    <script src="/components/client/dlg/client.dlg.controller.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Contrat Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/contrat/app.contrat.module.js" ></script>
+    <script src="/components/contrat/contrat.controller.js"></script>
+    <script src="/components/contrat/contrat.service.js"></script>
+    <script src="/components/contrat/contrat.pdf.service.js"></script>
+    <script src="/components/contrat/dlg/contrat.dlg.controller.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Voiture Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/voiture/app.voiture.module.js" ></script>
+    <script src="/components/voiture/voiture.controller.js"></script>
+    <script src="/components/voiture/voiture.service.js"></script>
+    <script src="/components/voiture/dlg/voiture.dlg.controller.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Administration Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/administration/app.administration.module.js" ></script>
+    <script src="/components/administration/administration.controller.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Reservation Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/reservation/app.reservation.module.js" ></script>
+    <script src="/components/reservation/reservation.controller.js"></script>
+    <script src="/components/reservation/reservation.service.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Authentification Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/authentification/app.authentification.module.js" ></script>
+    <script src="/components/authentification/authentification.controller.js"></script>
+    <script src="/components/authentification/authentification.service.js"></script>
+    <script src="/components/authentification/authentification.factory.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Home Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/home/app.home.module.js" ></script>
+    <script src="/components/home/home.controller.js"></script>
+    <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // Facture Module
+     -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+    <script src="/components/facture/app.facture.module.js" ></script>
+    <script src="/components/facture/facture.controller.js"></script>
+    <script src="/components/facture/facture.service.js"></script>
+    <script src="/components/facture/facture.pdf.service.js"></script>
+    <script src="/components/facture/dlg/facture.dlg.controller.js"></script>
+
+    <script src="/components/_conf/constants.js"></script>
+    <script src="/components/_conf/refrentiel.js"></script>
+
+  </body>
+</html>

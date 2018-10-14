@@ -1,0 +1,51 @@
+<div class="col-md-12 ">
+
+  <div class="col-md-12" ng-form="myFormCall">
+    <div class="col-md-12">
+        <div class="col-md-3 form-group">
+          <select ng-model="reservationVm.number" ng-options="item.name as item.name for item in reservationVm.users" class="form-control" required >
+            <option value="">- Choose user to call -</option>
+          </select>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-6">
+          <button ng-click="reservationVm.call()" ng-disabled="myFormCall.$invalid"  class="btn btn-success">
+            <span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
+          </button>
+          <button ng-click="reservationVm.mute()"   class="btn btn-info">
+            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+          </button>
+          <button ng-click="reservationVm.pause()"  class="btn btn-warning">
+            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+          </button>
+          <button ng-click="reservationVm.end()" ng-disabled="myFormCall.$invalid"   class="btn btn-danger">
+            <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+          </button>
+          <button ng-click="reservationVm.stop()"  class="btn btn-danger">
+            <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+          </button>
+          <button ng-click="reservationVm.reconnect()" class="btn btn-primary">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+          </button>
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-12" >
+    <div class="col-md-3" >
+      <span class="badge" style="margin:3px">ID : {{reservationVm.memberinfo}}</span>
+      <div id="vid-thumb" ></div>
+    </div>
+    <div class="col-md-3" >
+      <span class="badge" style="margin:3px">ID : {{reservationVm.contact}}</span>
+      <div id="vid-box" ></div>
+    </div>
+  </div>
+
+  <div ng-If="reservationVm.error" class="col-md-12 alert alert-danger ">
+    <strong>Erreur : </strong> {{reservationVm.error}}
+  </div><!-- /ALERT -->
+
+
+</div>

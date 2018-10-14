@@ -1,0 +1,46 @@
+<div class="col-md-12 form-group">
+  <div class="pull-right">
+    <button ng-click="clientVm.openClientModal()" class="btn btn-default">
+      Nouveau client
+    </button>
+  </div></br>
+</div>
+<div class="table-responsive col-md-12">
+  <table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+      <tr>
+        <th class="col-md-1">Nom</th>
+        <th class="col-md-1">Prenom</th>
+        <th class="col-md-2">Date de naissance</th>
+        <th class="col-md-2">Adresse</th>
+        <th class="col-md-1">Nationalité</th>
+        <th class="col-md-1">N° Permis</th>
+        <th class="col-md-2">Date Permis</th>
+        <th class="col-md-1">Email</th>
+        <th class="col-md-1">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="client in clientVm.clientsArray">
+        <td>{{client.nom}}</td>
+        <td>{{client.prenom}}</td>
+        <td>{{client.dateNaissance}}</td>
+        <td>{{client.adresse}}</td>
+        <td>{{client.nationalite}}</td>
+        <td>{{client.numPermis}}</td>
+        <td>{{client.datePermis}}</td>
+        <td>{{client.email}}</td>
+        <td>
+          <div class="btn-group" role="group" >
+            <button ng-click="clientVm.deleteClient(client._id)" ng-disabled="(clientVm.clicked)" class="btn btn-danger">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+            <button ng-click="clientVm.editClient(client._id)"   class="btn btn-warning">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
