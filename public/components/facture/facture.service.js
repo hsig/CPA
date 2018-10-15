@@ -8,18 +8,6 @@ factureService.$inject = ['$http'];
 
 function factureService ($http){
 
-  var service = {
-
-    getFactures    : getFactures,
-    addFacture     : addFacture,
-    deleteFacture  : deleteFacture,
-    editFacture    : editFacture,
-    updateFacture  : updateFacture
-
-  };
-
-  return service;
-
   function getFactures(){
     return $http.get('/factures').then(getFactureComplete)
                                  .catch(getFactureFailed);
@@ -81,6 +69,16 @@ function factureService ($http){
       return error;
     };
   };
+  
+  var service = {
+    getFactures    : getFactures,
+    addFacture     : addFacture,
+    deleteFacture  : deleteFacture,
+    editFacture    : editFacture,
+    updateFacture  : updateFacture
+  };
+
+  return service;
 
 };
 
