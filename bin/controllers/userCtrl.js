@@ -31,8 +31,8 @@ module.exports = function (){
 
   // route to authenticate a user (POST http://localhost:9090/api/authenticate)
   this.postAuthUser = function(req, res) {
-    console.log(req.body.username);
-    User.findOne({ name: req.body.username }, function(err, user) {
+    console.log(req.body);
+    User.findOne({ name: req.body.name }, function(err, user) {
       if (err) throw err;
       if (!user) {
         res.send({success: false, msg: 'Authentication failed. User not found.'});
